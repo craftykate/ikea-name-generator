@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
+import { NameGenerator } from '../NameGenerator/NameGenerator';
 
 class App extends Component {
   render() {
     return (
-      <p>Hello World</p>
+      <NameGenerator />
     );
   }
 }
