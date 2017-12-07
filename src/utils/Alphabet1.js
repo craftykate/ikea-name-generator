@@ -1,11 +1,11 @@
-let AlphabetSoup = {
-  wholeAlphabet() {
+let Alphabet = {
+  alphabet() {
     return ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v', 'y' ];
   },
-  justConsonants() {
+  consonants() {
     return ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'y' ];
   },
-  justVowels() {
+  vowels() {
     return ['a', 'e', 'i', 'o', 'u'];
   },
   aftera() {
@@ -76,4 +76,4 @@ let AlphabetSoup = {
   }
 }
 
-export default AlphabetSoup
+export default Alphabet

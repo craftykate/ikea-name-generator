@@ -1,4 +1,4 @@
-a.button {
+button {
   cursor: pointer;
   margin: 1em auto 0 auto;
   text-align: center;
@@ -9,8 +9,9 @@ a.button {
   font-size: 1em;
   transition: background-color .25s;
   color: white;
+  outline: none;
 }
 
-a.button:hover {
+button:hover {
   background-color: #9b4015;
 }
