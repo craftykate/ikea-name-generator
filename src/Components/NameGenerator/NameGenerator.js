@@ -55,7 +55,6 @@ export class NameGenerator extends Component {
       nextLetter = grabAlphabet[Math.floor(Math.random() * grabAlphabet.length)];
       numConsonants = 0;
     }
-    console.log(numConsonants);
     return nextLetter;
   }
 

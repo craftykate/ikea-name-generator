@@ -5,7 +5,10 @@ import { NameGenerator } from '../NameGenerator/NameGenerator';
 class App extends Component {
   render() {
     return (
-      <NameGenerator />
+      <div>
+        <NameGenerator />
+        <p className="footer">IKEA Name Generator | Built just for kicks by KateM</p>
+      </div>
     );
   }
 }
