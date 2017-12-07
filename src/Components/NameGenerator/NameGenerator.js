@@ -30,7 +30,7 @@ export class NameGenerator extends Component {
   }
 
   setWordLength() {
-    return Math.floor(Math.random() * 9) + 3;
+    return Math.floor(Math.random() * 7) + 3;
   }
 
   getNextLetter(word) {
