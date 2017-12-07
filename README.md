@@ -2,4 +2,4 @@
 
 Created just for fun as React practice
 
-Can be seen live at [ikea-name-generator.surge.sh](ikea-name-generator.surge.sh)
+Can be seen live at [ikea-name-generator.surge.sh](http://ikea-name-generator.surge.sh/)
