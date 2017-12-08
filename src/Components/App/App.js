@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div>
         <NameGenerator />
-        <p className="footer">IKEA Name Generator | Built just for kicks by KateM</p>
+        <p className="footer">IKEA Name Generator | Built just for kicks by Kate</p>
       </div>
     );
   }
