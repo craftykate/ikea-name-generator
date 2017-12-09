@@ -4,13 +4,13 @@ import { Name } from '../Name/Name';
 import { Button } from '../Button/Button';
 import AlphabetSoup from '../../utils/Alphabet';
 
-let numConsonants;
+let numConsonants = 0;
 
 export class NameGenerator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      name: ''
     }
     this.generateName = this.generateName.bind(this);
   }
@@ -22,13 +22,12 @@ export class NameGenerator extends Component {
 
   // Main function to build name
   generateName() {
-    // Set name to random length
     const wordLength = Math.floor(Math.random() * 6) + 3;
-    numConsonants = 0;
     let word = '';
-    // Get a letter wordLength times
+
+    // Generate each letter
     for (let arrayIndex = 0; arrayIndex < wordLength; arrayIndex++) {
-      let nextLetter = this.getNextLetter(word);
+      let nextLetter = this.returnNextLetter(word);
     	word += nextLetter;
     }
     // Format name to add Swedish characters if possible
@@ -39,35 +38,47 @@ export class NameGenerator extends Component {
     })
   }
 
-  getNextLetter(word) {
-    let grabAlphabet = '';
-    let nextLetter = '';
+  // Main function to get and return the next letter
+  returnNextLetter(word) {
+    let nextLetter;
+
     // If it's the first letter, grab any letter
     if (word.length === 0) {
-      grabAlphabet = AlphabetSoup.wholeAlphabet();
-      nextLetter = grabAlphabet[Math.floor(Math.random() * grabAlphabet.length)]
-    // If it's not the first letter, grab an acceptable letter based on the last letter
+      nextLetter = this.grabAnyLetter();
+    // If it's not the first letter...
+    // And there are too many consonants before it, grab a vowel
+    } else if (numConsonants === 2) {
+      nextLetter = this.grabAVowel();
+    // Otherwise, grab the next acceptable letter
     } else {
-      const lastLetter = word[word.length - 1];
-      const methodName = 'after' + lastLetter;
-      grabAlphabet = AlphabetSoup[methodName]();
-      nextLetter = grabAlphabet[Math.floor(Math.random() * grabAlphabet.length)];
+      nextLetter = this.grabNextGoodLetter(word);
     }
-    // If the letter grabbed is a consonant increase counter, otherwise reset
+    // Increase consonant counter if letter is a consonant
     AlphabetSoup.justConsonants().includes(nextLetter) ? numConsonants += 1 : numConsonants = 0;
-    // If there are too many consonants grab a vowel and reset counter
-    if (numConsonants > 2) {
-      grabAlphabet = AlphabetSoup.justVowels();
-      nextLetter = grabAlphabet[Math.floor(Math.random() * grabAlphabet.length)];
-      numConsonants = 0;
-    }
     return nextLetter;
   }
 
+  // Get any letter from alphabet
+  grabAnyLetter() {
+    let grabAlphabet = AlphabetSoup.wholeAlphabet();
+    return grabAlphabet[Math.floor(Math.random() * grabAlphabet.length)]
+  }
+  // Get just a vowel
+  grabAVowel() {
+    let grabAlphabet = AlphabetSoup.justVowels();
+    return grabAlphabet[Math.floor(Math.random() * grabAlphabet.length)]
+  }
+  // Get a letter than can follow the last letter
+  grabNextGoodLetter(word) {
+    const lastLetter = word[word.length - 1];
+    const methodName = 'after' + lastLetter;
+    let grabAlphabet = AlphabetSoup[methodName]();
+    return grabAlphabet[Math.floor(Math.random() * grabAlphabet.length)];
+  }
+
+  // Change first a and o (if present) to swedish characters
   formatName(word) {
-    let newWord = word.replace("a", "å");
-    newWord = newWord.replace("o", "ö")
-    return newWord;
+    return word.replace("a", "å").replace("o", "ö");
   }
 
   render() {
