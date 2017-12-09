@@ -22,10 +22,11 @@ export class NameGenerator extends Component {
 
   // Main function to build name
   generateName() {
+    // Pick word length between 3 and 9 characters
     const wordLength = Math.floor(Math.random() * 6) + 3;
     let word = '';
 
-    // Generate each letter
+    // Generate each letter wordLength times
     for (let arrayIndex = 0; arrayIndex < wordLength; arrayIndex++) {
       let nextLetter = this.returnNextLetter(word);
     	word += nextLetter;
