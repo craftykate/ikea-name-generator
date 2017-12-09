@@ -53,11 +53,12 @@ export class NameGenerator extends Component {
     } else {
       nextLetter = this.grabNextGoodLetter(word);
     }
-    // Increase consonant counter if letter is a consonant
+    // Increase consonant counter if letter is a consonant, reset it if letter is a vowel
     AlphabetSoup.justConsonants().includes(nextLetter) ? numConsonants += 1 : numConsonants = 0;
     return nextLetter;
   }
 
+  //===== FUNCTIONS THAT GET THE NEXT LETTER
   // Get any letter from alphabet
   grabAnyLetter() {
     let grabAlphabet = AlphabetSoup.wholeAlphabet();
@@ -75,6 +76,7 @@ export class NameGenerator extends Component {
     let grabAlphabet = AlphabetSoup[methodName]();
     return grabAlphabet[Math.floor(Math.random() * grabAlphabet.length)];
   }
+  //===== END FUNCTIONS THAT GET NEXT LETTER
 
   // Change first a and o (if present) to swedish characters
   formatName(word) {
