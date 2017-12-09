@@ -10,9 +10,14 @@ export class NameGenerator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "Fjördnång",
+      name: '',
     }
     this.generateName = this.generateName.bind(this);
+  }
+
+  // Generate a random name when app starts
+  componentDidMount() {
+    this.generateName();
   }
 
   generateName() {
