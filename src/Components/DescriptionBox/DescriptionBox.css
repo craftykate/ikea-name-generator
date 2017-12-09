@@ -12,3 +12,7 @@
   resize: none;
   height: 4em;
 }
+
+.nameBox textarea::placeholder {
+  color: #cecece;
+}
