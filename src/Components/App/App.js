@@ -7,7 +7,11 @@ class App extends Component {
     return (
       <div>
         <NameGenerator />
-        <p className="footer">IKEA Name Generator | Built just for kicks by Kate</p>
+        <div className="footer">
+          <p>IKEA Name Generator</p>
+          <p>Built just for kicks by Kate McFaul</p>
+          <p>ikea-name-generator.surge.sh</p>
+        </div>
       </div>
     );
   }

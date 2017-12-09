@@ -1,7 +1,11 @@
 .footer {
   text-align: center;
   color: #bec1c6;
-  margin: 2em auto;
+  margin: 1em auto;
   padding-top: 10px;
   border-top: 1px solid #bec1c6;
+}
+
+.footer p {
+  margin-top: 5px;
 }
