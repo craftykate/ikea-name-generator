@@ -3,8 +3,8 @@ import './DescriptionBox.css';
 
 
 export const DescriptionBox = (props) => {
-  return <input
+  return <textarea
     placeholder={props.description}
-    onFocus={props.onFocus}
-  />;
+    onFocus={props.onFocus}>
+  </textarea>;
 }

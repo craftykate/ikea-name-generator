@@ -1,9 +1,14 @@
-.nameBox input {
-  width: 100%;
+.nameBox textarea {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  min-width: 300px;
   border: 0;
   outline: 0;
   background: transparent;
   text-align: center;
   color: #fff;
   font-size: 1.2em;
+  resize: none;
+  height: 4em;
 }

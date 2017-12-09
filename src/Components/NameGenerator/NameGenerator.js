@@ -5,7 +5,7 @@ import { Description } from '../Description/Description';
 import { Button } from '../Button/Button';
 import AlphabetSoup from '../../utils/Alphabet';
 
-let numConsonants = 0;
+let numConsonants;
 
 export class NameGenerator extends Component {
   constructor(props) {
@@ -23,14 +23,14 @@ export class NameGenerator extends Component {
 
   // Main function to build name
   generateName() {
+    numConsonants = 0;
     // Pick random word length between 3 and 9 characters
     const wordLength = Math.floor(Math.random() * 6) + 3;
     let word = '';
 
     // Generate each letter wordLength times
     for (let arrayIndex = 0; arrayIndex < wordLength; arrayIndex++) {
-      let nextLetter = this.returnNextLetter(word);
-    	word += nextLetter;
+    	word += this.returnNextLetter(word);
     }
     // Format name to add Swedish characters if possible
     word = this.formatName(word);
@@ -56,7 +56,7 @@ export class NameGenerator extends Component {
       nextLetter = this.grabNextGoodLetter(word);
     }
     // Increase consonant counter if letter is a consonant, reset it if letter is a vowel
-    AlphabetSoup.justConsonants().includes(nextLetter) ? numConsonants += 1 : numConsonants = 0;
+    AlphabetSoup.justVowels().includes(nextLetter) ? numConsonants = 0 : numConsonants += 1;
     return nextLetter;
   }
 
@@ -87,9 +87,9 @@ export class NameGenerator extends Component {
 
   render() {
     return (
-      <div className="nameBox">
+      <div className="nameBox" >
         <Name name={this.state.name} />
-        <Description />
+        <Description key={this.state.name}/>
         <Button onClick={this.generateName} />
       </div>
     );
