@@ -20,22 +20,23 @@ export class NameGenerator extends Component {
     this.generateName();
   }
 
+  // Main function to build name
   generateName() {
-    const length = this.setWordLength();
+    // Set name to random length
+    const wordLength = Math.floor(Math.random() * 6) + 3;
     numConsonants = 0;
     let word = '';
-    for (let arrayIndex = 0; arrayIndex < length; arrayIndex++) {
+    // Get a letter wordLength times
+    for (let arrayIndex = 0; arrayIndex < wordLength; arrayIndex++) {
       let nextLetter = this.getNextLetter(word);
     	word += nextLetter;
     }
+    // Format name to add Swedish characters if possible
     word = this.formatName(word);
+    // Save name and rerender
     this.setState({
       name: word
     })
-  }
-
-  setWordLength() {
-    return Math.floor(Math.random() * 7) + 3;
   }
 
   getNextLetter(word) {
