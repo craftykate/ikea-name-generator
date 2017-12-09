@@ -22,7 +22,7 @@ export class NameGenerator extends Component {
 
   // Main function to build name
   generateName() {
-    // Pick word length between 3 and 9 characters
+    // Pick random word length between 3 and 9 characters
     const wordLength = Math.floor(Math.random() * 6) + 3;
     let word = '';
 
