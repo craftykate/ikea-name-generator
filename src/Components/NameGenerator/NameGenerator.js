@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './NameGenerator.css';
 import { Name } from '../Name/Name';
+import { Description } from '../Description/Description';
 import { Button } from '../Button/Button';
 import AlphabetSoup from '../../utils/Alphabet';
 
@@ -88,6 +89,7 @@ export class NameGenerator extends Component {
     return (
       <div className="nameBox">
         <Name name={this.state.name} />
+        <Description />
         <Button onClick={this.generateName} />
       </div>
     );
