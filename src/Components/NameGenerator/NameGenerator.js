@@ -34,6 +34,8 @@ export class NameGenerator extends Component {
     for (let arrayIndex = 0; arrayIndex < wordLength; arrayIndex++) {
     	word += this.returnNextLetter(word);
     }
+    // Checks if word ended with two consonants. For readability, end with an extra vowel
+    word = this.endWord(word);
     // Format name to add Swedish characters if possible
     word = this.formatName(word);
     // Save name and rerender
@@ -100,6 +102,15 @@ export class NameGenerator extends Component {
       numConsonants += 1;
       numVowels = 0;
     }
+  }
+
+  // For readability, make sure word has a vowel in the last two letters
+  endWord(word) {
+    let lastLetters = word.slice(-2);
+    if (!AlphabetSoup.justVowels().includes(lastLetters[0]) && !AlphabetSoup.justVowels().includes(lastLetters[1])) {
+      word += this.grabAVowel();
+    }
+    return word;
   }
 
   // Change first a and o (if present) to swedish characters
