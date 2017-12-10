@@ -6,6 +6,7 @@ import { Button } from '../Button/Button';
 import AlphabetSoup from '../../utils/Alphabet';
 
 let numConsonants;
+let numVowels;
 
 export class NameGenerator extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ export class NameGenerator extends Component {
   // Main function to build name
   generateName() {
     numConsonants = 0;
+    numVowels = 0;
     // Pick random word length between 3 and 9 characters
     const wordLength = Math.floor(Math.random() * 6) + 3;
     let word = '';
@@ -52,12 +54,15 @@ export class NameGenerator extends Component {
     // Or it's the second letter and the first wasn't a vowel (this makes sure there's a vowel in the first two letters for readability)
     } else if (numConsonants === 2 || (word.length === 1 && numConsonants === 1)) {
       nextLetter = this.grabAVowel();
+    // Or if there are too many vowels grab a consonant
+    } else if (numVowels === 3){
+      nextLetter = this.grabAConsonant();
     // Otherwise, grab the next acceptable letter
     } else {
       nextLetter = this.grabNextGoodLetter(word);
     }
-    // Increase consonant counter if letter is a consonant, reset it if letter is a vowel
-    AlphabetSoup.justVowels().includes(nextLetter) ? numConsonants = 0 : numConsonants += 1;
+    // Increase/reset consonant and vowel counters appropriately
+    this.increaseCounters(nextLetter);
     return nextLetter;
   }
 
@@ -72,6 +77,11 @@ export class NameGenerator extends Component {
     let grabAlphabet = AlphabetSoup.justVowels();
     return grabAlphabet[Math.floor(Math.random() * grabAlphabet.length)]
   }
+  // Get just a consonant
+  grabAConsonant() {
+    let grabAlphabet = AlphabetSoup.justConsonants();
+    return grabAlphabet[Math.floor(Math.random() * grabAlphabet.length)]
+  }
   // Get a letter than can follow the last letter
   grabNextGoodLetter(word) {
     const lastLetter = word[word.length - 1];
@@ -80,6 +90,17 @@ export class NameGenerator extends Component {
     return grabAlphabet[Math.floor(Math.random() * grabAlphabet.length)];
   }
   //===== END FUNCTIONS THAT GET NEXT LETTER
+
+  // Increase/reset consonant and vowel counters appropriately
+  increaseCounters(nextLetter) {
+    if (AlphabetSoup.justVowels().includes(nextLetter)) {
+      numConsonants = 0;
+      numVowels += 1;
+    } else {
+      numConsonants += 1;
+      numVowels = 0;
+    }
+  }
 
   // Change first a and o (if present) to swedish characters
   formatName(word) {
