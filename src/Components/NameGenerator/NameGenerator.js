@@ -115,7 +115,13 @@ export class NameGenerator extends Component {
 
   // Change first a and o (if present) to swedish characters
   formatName(word) {
-    return word.replace("a", "å").replace("o", "ö");
+    // 50/50 chance of changing first a
+    let coinToss = Math.random() < 0.5;
+    if (coinToss) word = word.replace("a", "å")
+    // 50/50 chance of changing first o
+    coinToss = Math.random() < 0.5;
+    if (coinToss) word = word.replace("o", "ö");
+    return word;
   }
 
   render() {
