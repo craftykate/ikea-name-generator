@@ -49,7 +49,8 @@ export class NameGenerator extends Component {
       nextLetter = this.grabAnyLetter();
     // If it's not the first letter...
     // And there are too many consonants before it, grab a vowel
-    } else if (numConsonants === 2) {
+    // Or it's the second letter and the first wasn't a vowel (this makes sure there's a vowel in the first two letters for readability)
+    } else if (numConsonants === 2 || (word.length === 1 && numConsonants === 1)) {
       nextLetter = this.grabAVowel();
     // Otherwise, grab the next acceptable letter
     } else {
