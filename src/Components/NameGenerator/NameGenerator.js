@@ -57,7 +57,7 @@ export class NameGenerator extends Component {
     } else if (numConsonants === 2 || (word.length === 1 && numConsonants === 1)) {
       nextLetter = this.grabAVowel();
     // Or if there are too many vowels grab a consonant
-    } else if (numVowels === 3){
+    } else if (numVowels === 2){
       nextLetter = this.grabAConsonant();
     // Otherwise, grab the next acceptable letter
     } else {
